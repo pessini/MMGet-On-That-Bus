@@ -20,6 +20,9 @@
 {
     [super viewDidLoad];
 
+    // Delegate
+    self.mapView.delegate = self;
+
 }
 
 @end
