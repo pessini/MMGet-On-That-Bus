@@ -105,13 +105,31 @@
                     <view key="view" contentMode="scaleToFill" id="fkm-ef-nYW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i4W-bR-YYH">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="186" y="72" width="28" height="52"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="i4W-bR-YYH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="i4W-bR-YYH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="NNz-Du-j8X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6o-Cg-DzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3688.5" y="154"/>
+            <point key="canvasLocation" x="2509.5" y="177"/>
         </scene>
         <!--Map-->
         <scene sceneID="T9t-SY-tEd">
@@ -162,6 +180,7 @@
                     <navigationItem key="navigationItem" title="Get on that bus" id="si0-DA-94f"/>
                     <connections>
                         <outlet property="mapView" destination="Wv4-09-QHV" id="fyo-Jo-WTy"/>
+                        <segue destination="APp-s7-iJM" kind="show" identifier="ShowDetailSegue" id="Taa-Yb-O1w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVe-mw-mot" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +244,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVN-BF-Vy1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2770.5" y="154"/>
+            <point key="canvasLocation" x="1816.5" y="177"/>
         </scene>
         <!--Map-->
         <scene sceneID="apI-7z-MkI">
@@ -254,4 +273,7 @@
         <image name="map-tabbar" width="34" height="27"/>
         <image name="top_charts" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Taa-Yb-O1w"/>
+    </inferredMetricsTieBreakers>
 </document>

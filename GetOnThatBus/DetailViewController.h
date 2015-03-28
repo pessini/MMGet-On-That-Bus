@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "API.h"
 
 @interface DetailViewController : UIViewController
 
-@property NSString *name;
+@property API *busStop;
 
 @end

@@ -84,10 +84,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         UINavigationController *navigationController = segue.destinationViewController;
         DetailViewController *detailViewController = navigationController.viewControllers[0];
-
-        NSDictionary *stops = [self.arrayWithData objectAtIndex:indexPath.row];
-        detailViewController.title =  [stops objectForKey:@"cta_stop_name"];
-        detailViewController.name =  [stops objectForKey:@"cta_stop_name"];
+        API *stop = [self.arrayWithData objectAtIndex:indexPath.row];
+        detailViewController.title = stop.stopName;
+        detailViewController.busStop =  stop;
     }
 }
 
