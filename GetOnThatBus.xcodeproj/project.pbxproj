@@ -144,9 +144,9 @@
 		56AC1EB41AC205B200E6570C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				56AC1EB61AC21FB900E6570C /* Tab Bar */,
 				56AC1EAD1AC2031F00E6570C /* DetailViewController.h */,
 				56AC1EAE1AC2031F00E6570C /* DetailViewController.m */,
-				56AC1EB61AC21FB900E6570C /* Tab Bar */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -466,6 +466,7 @@
 				56AC1EA11AC1DAFD00E6570C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56AC1EA21AC1DAFD00E6570C /* Build configuration list for PBXNativeTarget "GetOnThatBusTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +475,7 @@
 				56AC1EA41AC1DAFD00E6570C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

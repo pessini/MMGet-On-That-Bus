@@ -37,14 +37,7 @@
     self.arrayWithData = [NSMutableArray new];
     self.arrayWithData = [API stopsArray];
 
-    for (API *annotation in self.arrayWithData)
-    {
-        NSLog(@"%@", annotation.address);
-
-//        [self.mapView addAnnotation:annotation];
-    }
-
-
+    self.navigationItem.title = @"Bus Stops List";
 }
 
 #pragma mark -UITableViewDataSource
@@ -57,9 +50,29 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCell"];
-//    NSDictionary *stops = [self.arrayWithData objectAtIndex:indexPath.row];
-    cell.textLabel.text  = [NSString stringWithFormat:@"Count: %lu", (unsigned long)self.arrayWithData.count];
-//    cell.detailTextLabel.text = [stops objectForKey:@"direction"];
+    API *annotation = [self.arrayWithData objectAtIndex:indexPath.row];
+
+    /**
+     *  Updtate cell image and title text color depending on intermodal text.
+     */
+    if ([annotation.intermodal isEqualToString:@"Metra"])
+    {
+        cell.textLabel.textColor = [UIColor colorWithRed:0.83 green:0.27 blue:0.27 alpha:1.00];
+        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_DropOff_Up"];
+
+    } else if ([annotation.intermodal isEqualToString:@"Pace"])
+    {
+        cell.textLabel.textColor = [UIColor colorWithRed:0.49 green:0.35 blue:0.79 alpha:1.00];
+        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_PickUp_Up"];
+    }
+    else
+    {
+        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_Default_Up"];
+    }
+
+    cell.textLabel.text = annotation.stopName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Available Routes: %@", annotation.routes];
+
     return cell;
 }
 

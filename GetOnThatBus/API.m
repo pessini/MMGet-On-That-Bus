@@ -13,64 +13,57 @@
 
 @end
 
-NSString * const API_URL = @"https://s3.amazonaws.com/mobile-makers-lib/bus.json";
+#define API_URL @"https://s3.amazonaws.com/mobile-makers-lib/bus.json"
 
 @implementation API
 
--(instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    self = [super init];
-    if (self)
-    {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
         self.address = dictionary[@"_address"];
+        self.busID = dictionary[@"_id"];
+        self.position = dictionary[@"_position"];
+        self.uuid = dictionary[@"_uuid"];
+        self.stopName = dictionary[@"cta_stop_name"];
+        self.direction = dictionary[@"direction"];
+        self.locationLat = dictionary[@"location"][@"latitude"];
+        self.locationLong = dictionary[@"location"][@"longitude"];
+        self.latitude = dictionary[@"latitude"];
+        self.longitude = dictionary[@"longitude"];
+        self.routes = dictionary[@"routes"];
+        self.stopID = dictionary[@"stop_id"];
+        self.ward = dictionary[@"ward"];
+        self.intermodal = dictionary[@"inter_modal"];
+
+        double latitude = [dictionary[@"latitude"] doubleValue];
+        double longitude;
+
+        if ([dictionary[@"longitude"] doubleValue] > 0) {
+            longitude = -[dictionary[@"longitude"] doubleValue];
+        }
+        else {
+            longitude = [dictionary[@"longitude"]doubleValue];
+        }
+        self.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     }
     return self;
 }
 
 + (NSMutableArray *)stopsArray {
     NSMutableArray *pinArray = [NSMutableArray new];
-    NSString *searchString = [NSString stringWithFormat:@"https://s3.amazonaws.com/mobile-makers-lib/bus.json"];
+    NSString *searchString = API_URL;
     NSURL *url = [NSURL URLWithString:searchString];
     NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *mapDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSArray *mapArray = mapDict[@"row"];
-    for (NSDictionary *stops in mapArray) {
-        API *annotations = [[API alloc] initWithDictionary:stops];
-        annotations.title = annotations.address;
-        annotations.subtitle = annotations.address;
-        [pinArray addObject:annotations];
-
-        NSLog(@"%@", annotations.address);
-
+    if (data)
+    {
+        NSDictionary *mapDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSArray *mapArray = mapDict[@"row"];
+        for (NSDictionary *stops in mapArray)
+        {
+            API *pins = [[API alloc] initWithDictionary:stops];
+            [pinArray addObject:pins];
+        }
     }
     return pinArray;
 }
-
-
--(void)apiRequestFromURL:(void (^)(NSMutableArray *searchArray))completionHandler
-{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", API_URL]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-    {
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
-
-        NSArray *itemArray = dictionary[@"row"];
-        NSMutableArray *results = [NSMutableArray new];
-
-        for (NSDictionary *items in itemArray)
-        {
-            API *model = [[API alloc] initWithDictionary:items];
-            [results addObject:model];
-//            NSLog(@"API: %@", model.address);
-        }
-
-        completionHandler(results);
-
-//        [self.eventsTableView reloadData];
-    }];
-}
-
 
 @end
