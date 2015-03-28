@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import "API.h"
+
 #define CHICAGO_LATITUDE 41.8781136
 #define CHICAGO_LONGTITUDE -87.6297982
 
@@ -32,7 +33,8 @@
     self.mapPins = [API stopsArray];
 
     //Add annotation to map for every item in our array
-    for (API *annotation in self.mapPins) {
+    for (API *annotation in self.mapPins)
+    {
         [self.mapView addAnnotation:annotation];
     }
 
@@ -42,7 +44,9 @@
 }
 
 #pragma mark - MapKit
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
     API *newAnnotation = annotation;
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
     pin.canShowCallout = YES;
@@ -69,10 +73,7 @@
     {
         pin.pinColor = MKPinAnnotationColorRed;
     }
-
-    
-     /*  Display pin with button desclosure
-     */
+    //  Display pin with button disclosure
     pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     return pin;
 }
