@@ -57,17 +57,16 @@
      */
     if ([annotation.intermodal isEqualToString:@"Metra"])
     {
-        cell.textLabel.textColor = [UIColor colorWithRed:0.83 green:0.27 blue:0.27 alpha:1.00];
-        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_DropOff_Up"];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.12 green:0.56 blue:0.39 alpha:1.00];
 
-    } else if ([annotation.intermodal isEqualToString:@"Pace"])
+    }
+    else if ([annotation.intermodal isEqualToString:@"Pace"])
     {
-        cell.textLabel.textColor = [UIColor colorWithRed:0.49 green:0.35 blue:0.79 alpha:1.00];
-        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_PickUp_Up"];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.83 green:0.43 blue:0.86 alpha:1.00];
     }
     else
     {
-        cell.imageView.image = [UIImage imageNamed:@"FindARide_MapUI_Pin_Default_Up"];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.90 green:0.00 blue:0.05 alpha:1.00];
     }
 
     cell.textLabel.text = annotation.stopName;

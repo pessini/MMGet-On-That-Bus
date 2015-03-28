@@ -59,11 +59,15 @@
 
     if ([newAnnotation.intermodal isEqualToString:@"Metra"])
     {
-        pin.backgroundColor = [UIColor greenColor];
+        pin.pinColor = MKPinAnnotationColorGreen;
     }
     else if ([newAnnotation.intermodal isEqualToString:@"Pace"])
     {
-        pin.backgroundColor = [UIColor yellowColor];
+        pin.pinColor = MKPinAnnotationColorPurple;
+    }
+    else
+    {
+        pin.pinColor = MKPinAnnotationColorRed;
     }
 
     
